@@ -20,7 +20,7 @@ OpenVINOを実行可能なプログラミング言語はPythonとC++です。こ
 
 ## 目次
 
-1. [インストール](https://github.com/JuvenileTalk9/OpenVINO/01_インストール/インストール.md)
-2. [画像認識](https://github.com/JuvenileTalk9/OpenVINO/02_画像認識/画像認識.md)
+1. [インストール](https://github.com/JuvenileTalk9/OpenVINO/blob/main/01_インストール/インストール.md)
+2. [画像認識](https://github.com/JuvenileTalk9/OpenVINO/blob/main/02_画像認識/画像認識.md)
 
 （作成中）
