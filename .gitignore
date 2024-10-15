@@ -1,0 +1,6 @@
+/build/
+debug/
+settings.json
+tasks.json
+*.bin
+*.xml
