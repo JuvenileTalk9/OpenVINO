@@ -23,12 +23,12 @@ std::vector<BBox> BBoxAndLabel::postprocess(OpenVINOModel& model) {
         }
 
         // 検出されたバウンディングボックスの座標を取得
-        const int xmin = static_cast<int>(boxes[idx * 5 + 0] / input_shape[3]);
-        const int ymin = static_cast<int>(boxes[idx * 5 + 1] / input_shape[2]);
-        const int xmax = static_cast<int>(boxes[idx * 5 + 2] / input_shape[3]);
-        const int ymax = static_cast<int>(boxes[idx * 5 + 3] / input_shape[2]);
+        const float xmin = static_cast<float>(boxes[idx * 5 + 0] / input_shape[3]);
+        const float ymin = static_cast<float>(boxes[idx * 5 + 1] / input_shape[2]);
+        const float xmax = static_cast<float>(boxes[idx * 5 + 2] / input_shape[3]);
+        const float ymax = static_cast<float>(boxes[idx * 5 + 3] / input_shape[2]);
 
-        bboxes.emplace_back(cv::Rect(cv::Point(xmin, ymin), cv::Point(xmax, ymax)), label,
+        bboxes.emplace_back(cv::Rect2f(cv::Point2f(xmin, ymin), cv::Point2f(xmax, ymax)), label,
                             confidence);
     }
 

@@ -12,8 +12,9 @@ ov::Tensor FloatCHW::preprocess(const OpenVINOModel& model, const cv::Mat& image
     input_image = convert_hwc2chw(input_image);
 
     // Mat -> Tensor
+    allocated_image = input_image;
     ov::Tensor input_tensor(ov::element::f32, {1, input_shape[1], input_shape[2], input_shape[3]},
-                            input_image.data);
+                            allocated_image.data);
 
     return input_tensor;
 }
