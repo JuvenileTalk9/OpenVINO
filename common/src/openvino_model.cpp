@@ -16,9 +16,15 @@ OpenVINOModel::~OpenVINOModel(void) {}
 
 ov::Shape OpenVINOModel::get_input_shape(void) const { return compiled_model.input().get_shape(); }
 
+ov::element::Type OpenVINOModel::get_elementtype(void) const {
+    return compiled_model.input().get_element_type();
+}
+
 void OpenVINOModel::infer(ov::Tensor& input_tensor) {
     infer_request.set_input_tensor(input_tensor);
     infer_request.infer();
 }
 
-ov::Tensor OpenVINOModel::get_output_tensor(const int index) { return infer_request.get_output_tensor(index); }
+ov::Tensor OpenVINOModel::get_output_tensor(const int index) {
+    return infer_request.get_output_tensor(index);
+}

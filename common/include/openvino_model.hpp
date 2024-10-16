@@ -1,14 +1,16 @@
 #pragma once
 
+#include <exception>
 #include <filesystem>
 #include <openvino/openvino.hpp>
+#include <string>
 
 /**
  * @brief OpenVINOのモデルを管理する
  *
  */
 class OpenVINOModel {
-   protected:
+   private:
     ov::Core core;
     std::shared_ptr<ov::Model> model = nullptr;
     ov::CompiledModel compiled_model;
@@ -34,6 +36,13 @@ class OpenVINOModel {
      * @return ov::Shape モデルの入力サイズ
      */
     ov::Shape get_input_shape(void) const;
+
+    /**
+     * @brief 入力の型情報を返す
+     *
+     * @return ov::element::Type 入力の型情報
+     */
+    ov::element::Type get_elementtype(void) const;
 
     /**
      * @brief 推論を実行する
