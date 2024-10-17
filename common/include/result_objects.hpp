@@ -9,9 +9,9 @@
  */
 class BBox {
    private:
-    cv::Rect2f rect;
-    int label;
-    double confidence;
+    const cv::Rect2f rect;
+    const int label;
+    const float confidence;
 
    public:
     /**
@@ -21,7 +21,7 @@ class BBox {
      * @param label ラベル
      * @param confidence 確信度
      */
-    BBox(const cv::Rect2f rect, const int label, const double confidence);
+    BBox(const cv::Rect2f rect, const int label, const float confidence);
 
     /**
      * @brief 座標を返す
@@ -40,7 +40,49 @@ class BBox {
     /**
      * @brief 確信度を返す
      *
-     * @return double 確信度
+     * @return float 確信度
      */
-    double get_confidence(void) const;
+    float get_confidence(void) const;
+};
+
+/**
+ * @brief 骨格情報のオブジェクトクラス
+ *
+ */
+class KeyPoint {
+   private:
+    const float x;
+    const float y;
+    const float confidence;
+
+   public:
+    /**
+     * @brief コンストラクタ
+     *
+     * @param x x座標
+     * @param y y座標
+     * @param confidence 確信度
+     */
+    KeyPoint(const float x, const float y, const float confidence);
+
+    /**
+     * @brief x座標を返す
+     *
+     * @return float x座標
+     */
+    float get_x(void) const;
+
+    /**
+     * @brief y座標を返す
+     *
+     * @return float y座標
+     */
+    float get_y(void) const;
+
+    /**
+     * @brief 確信度を返す
+     *
+     * @return float 確信度
+     */
+    float get_confidence(void) const;
 };

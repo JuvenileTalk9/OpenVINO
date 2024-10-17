@@ -74,3 +74,25 @@ class DetectorBBox7 : public OpenVINOTask<FloatCHW, BBox7> {
      */
     std::vector<BBox> task(const cv::Mat& image);
 };
+
+/**
+ * @brief 骨格検出タスク
+ *
+ */
+class PoseDetector : public OpenVINOTask<FloatCHW, KeyPoints> {
+   public:
+    /**
+     * @brief モデルを読み込む
+     *
+     * @param model_path モデルファイルのパス
+     */
+    PoseDetector(const std::string model_path);
+
+    /**
+     * @brief 骨格検出タスクを実行する
+     *
+     * @param image 入力画像
+     * @return std::vector<KeyPoint> キーポイントのベクトル
+     */
+    std::vector<KeyPoint> task(const cv::Mat& image);
+};

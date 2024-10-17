@@ -24,3 +24,12 @@ std::vector<BBox> DetectorBBox7::task(const cv::Mat& image) {
     std::vector<BBox> bboxes = postprocessor.postprocess(*model);
     return bboxes;
 }
+
+PoseDetector::PoseDetector(const std::string model_path) : OpenVINOTask(model_path) {}
+
+std::vector<KeyPoint> PoseDetector::task(const cv::Mat& image) {
+    ov::Tensor input_tensor = preprocessor.preprocess(*model, image);
+    model->infer(input_tensor);
+    std::vector<KeyPoint> bboxes = postprocessor.postprocess(*model);
+    return bboxes;
+}

@@ -59,3 +59,18 @@ class BBox7 : public PostprocessInterface<std::vector<BBox>> {
      */
     std::vector<BBox> postprocess(OpenVINOModel& model) override;
 };
+
+/**
+ * @brief キーポイント[1, 17, 224, 224]を返す後処理
+ *
+ */
+class KeyPoints : public PostprocessInterface<std::vector<KeyPoint>> {
+   public:
+    /**
+     * @brief キーポイント[1, 17, 224, 224]を返す後処理
+     *
+     * @param model モデル
+     * @return std::vector<cv::Point2f> キーポイントのリスト
+     */
+    std::vector<KeyPoint> postprocess(OpenVINOModel& model) override;
+};

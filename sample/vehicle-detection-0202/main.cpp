@@ -3,7 +3,6 @@
 #include <opencv2/opencv.hpp>
 #include <vector>
 
-#include "openvino_model.hpp"
 #include "openvino_task.hpp"
 
 namespace fs = std::filesystem;

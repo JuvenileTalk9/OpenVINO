@@ -76,3 +76,26 @@ std::vector<BBox> BBox7::postprocess(OpenVINOModel& model) {
 
     return bboxes;
 }
+
+std::vector<KeyPoint> KeyPoints::postprocess(OpenVINOModel& model) {
+    // 結果を取得
+    const ov::Tensor& heatmaps_tensor = model.get_output_tensor(0);
+    const float* heatmaps = reinterpret_cast<float*>(heatmaps_tensor.data());
+    const ov::Shape output_shape = heatmaps_tensor.get_shape();
+
+    // キーポイントを検出
+    std::vector<KeyPoint> keypoints;
+    for (int i = 0; i < output_shape[1]; i++) {
+        const int max_index =
+            std::max_element(heatmaps + i * output_shape[2] * output_shape[3],
+                             heatmaps + (i + 1) * output_shape[2] * output_shape[3]) -
+            (heatmaps + i * output_shape[2] * output_shape[3]);
+        const float x = (float)(max_index % output_shape[2]) / output_shape[3];
+        const float y = (float)(max_index / output_shape[2]) / output_shape[2];
+        const float confidence = heatmaps[max_index + i * output_shape[2] * output_shape[3]];
+
+        keypoints.emplace_back(x, y, confidence);
+    }
+
+    return keypoints;
+}
