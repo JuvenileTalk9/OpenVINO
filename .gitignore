@@ -2,5 +2,6 @@ build/
 debug/
 settings.json
 tasks.json
+launch.json
 *.bin
 *.xml
