@@ -8,8 +8,8 @@
 
 namespace fs = std::filesystem;
 
-void process_image(DetectorBBox5Label1& detector, const fs::path input_path,
-                   const fs::path output_path, const double confidence_thr = 0.2) {
+void process_image(DetectorBBox7& detector, const fs::path input_path, const fs::path output_path,
+                   const double confidence_thr = 0.2) {
     // 画像読み込み
     cv::Mat image = cv::imread(input_path.string());
     if (image.empty()) {
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
         }
     }
 
-    DetectorBBox5Label1 detector(model_path.string());
+    DetectorBBox7 detector(model_path.string());
 
     // 1画像ずつ読み込んで処理
     for (const auto& entry : fs::directory_iterator(input_dir)) {

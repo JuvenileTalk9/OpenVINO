@@ -25,13 +25,34 @@ class PostprocessInterface {
 };
 
 /**
- * @brief 検知枠とラベルを返す後処理
+ * @brief 検知枠[N,5]とラベル[N]を返す後処理
  *
  */
-class BBoxAndLabel : public PostprocessInterface<std::vector<BBox>> {
+class BBox5Label1 : public PostprocessInterface<std::vector<BBox>> {
+   private:
+    static const std::size_t MAX_DETECTION = 100;
+
    public:
     /**
-     * @brief 検知枠とラベルを返す後処理
+     * @brief 検知枠[N,5]とラベル[N]を返す後処理
+     *
+     * @param model モデル
+     * @return std::vector<BBox> BBoxのリスト
+     */
+    std::vector<BBox> postprocess(OpenVINOModel& model) override;
+};
+
+/**
+ * @brief 検知枠[N,7]を返す後処理
+ *
+ */
+class BBox7 : public PostprocessInterface<std::vector<BBox>> {
+   private:
+    static const std::size_t MAX_DETECTION = 200;
+
+   public:
+    /**
+     * @brief 検知枠[N,7]を返す後処理
      *
      * @param model モデル
      * @return std::vector<BBox> BBoxのリスト

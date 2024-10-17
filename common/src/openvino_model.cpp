@@ -1,6 +1,6 @@
 #include "openvino_model.hpp"
 
-OpenVINOModel::OpenVINOModel(const std::string model_path) {
+OpenVINOModel::OpenVINOModel(const std::string model_path, const std::string device) {
     // ファイル存在チェック
     if (!std::filesystem::is_regular_file(model_path)) {
         throw std::runtime_error("No such model file: " + model_path);
@@ -8,7 +8,7 @@ OpenVINOModel::OpenVINOModel(const std::string model_path) {
 
     // モデルの読み込み
     model = core.read_model(model_path);
-    compiled_model = core.compile_model(model, "CPU");
+    compiled_model = core.compile_model(model, device);
     infer_request = compiled_model.create_infer_request();
 }
 

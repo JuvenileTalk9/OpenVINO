@@ -22,7 +22,7 @@ class OpenVINOModel {
      *
      * @param model_path モデルのパス
      */
-    OpenVINOModel(const std::string model_path);
+    OpenVINOModel(const std::string model_path, const std::string device = "CPU");
 
     /**
      * @brief 読み込んだモデルを解放する

@@ -9,3 +9,6 @@ add_subdirectory(common)
 
 # person-detection-0303
 add_subdirectory(sample/person-detection-0303)
+
+# vehicle-detection-0202
+add_subdirectory(sample/vehicle-detection-0202)

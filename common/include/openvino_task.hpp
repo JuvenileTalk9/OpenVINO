@@ -32,17 +32,39 @@ class OpenVINOTask {
 };
 
 /**
- * @brief 物体検知タスク
+ * @brief 物体検知タスク（BBox5Label1）
  *
  */
-class Detector : public OpenVINOTask<FloatCHW, BBoxAndLabel> {
+class DetectorBBox5Label1 : public OpenVINOTask<FloatCHW, BBox5Label1> {
    public:
     /**
      * @brief モデルを読み込む
      *
      * @param model_path モデルファイルのパス
      */
-    Detector(const std::string model_path);
+    DetectorBBox5Label1(const std::string model_path);
+
+    /**
+     * @brief 物体検知タスクを実行する
+     *
+     * @param image 入力画像
+     * @return std::vector<BBox> 検知結果のベクトル
+     */
+    std::vector<BBox> task(const cv::Mat& image);
+};
+
+/**
+ * @brief 物体検知タスク（BBox7）
+ *
+ */
+class DetectorBBox7 : public OpenVINOTask<FloatCHW, BBox7> {
+   public:
+    /**
+     * @brief モデルを読み込む
+     *
+     * @param model_path モデルファイルのパス
+     */
+    DetectorBBox7(const std::string model_path);
 
     /**
      * @brief 物体検知タスクを実行する

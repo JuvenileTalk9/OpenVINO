@@ -7,9 +7,18 @@ OpenVINOTask<Preprocess, Postprocess>::OpenVINOTask(const std::string model_path
     postprocessor = Postprocess();
 }
 
-Detector::Detector(const std::string model_path) : OpenVINOTask(model_path) {}
+DetectorBBox5Label1::DetectorBBox5Label1(const std::string model_path) : OpenVINOTask(model_path) {}
 
-std::vector<BBox> Detector::task(const cv::Mat& image) {
+std::vector<BBox> DetectorBBox5Label1::task(const cv::Mat& image) {
+    ov::Tensor input_tensor = preprocessor.preprocess(*model, image);
+    model->infer(input_tensor);
+    std::vector<BBox> bboxes = postprocessor.postprocess(*model);
+    return bboxes;
+}
+
+DetectorBBox7::DetectorBBox7(const std::string model_path) : OpenVINOTask(model_path) {}
+
+std::vector<BBox> DetectorBBox7::task(const cv::Mat& image) {
     ov::Tensor input_tensor = preprocessor.preprocess(*model, image);
     model->infer(input_tensor);
     std::vector<BBox> bboxes = postprocessor.postprocess(*model);
