@@ -5,3 +5,4 @@ tasks.json
 launch.json
 *.bin
 *.xml
+*.pyc
